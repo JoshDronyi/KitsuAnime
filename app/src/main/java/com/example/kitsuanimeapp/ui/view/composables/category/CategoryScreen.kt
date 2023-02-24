@@ -13,6 +13,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,7 +36,7 @@ fun CategoryScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.Gray),
+            .background(Color.Transparent),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         items(categories) {
@@ -52,7 +53,8 @@ fun CategoryItem(categoryAttributes: Attributes, onItemSelected: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth(PAGE_PERCENTAGE)
-            .padding(16.dp),
+            .padding(16.dp)
+            .background(MaterialTheme.colorScheme.surface),
         onClick = onItemSelected,
         elevation = CardDefaults.cardElevation(
             defaultElevation = 16.dp,
@@ -88,7 +90,7 @@ fun CategoryItem(categoryAttributes: Attributes, onItemSelected: () -> Unit) {
                         .padding(bottom = 16.dp, top = 16.dp),
                 )
                 Row(Modifier.padding(12.dp)) {
-                    BodyText(text = categoryAttributes.description){}
+                    BodyText(text = categoryAttributes.description) {}
                 }
             }
         }

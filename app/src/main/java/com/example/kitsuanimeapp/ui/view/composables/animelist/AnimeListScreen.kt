@@ -68,7 +68,6 @@ fun AnimeListItem(
     var showAlert by remember { mutableStateOf(false) }
 
     Card(
-        colors = CardDefaults.cardColors(containerColor = Color.Cyan),
         modifier = Modifier.fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 4.dp),
     ) {

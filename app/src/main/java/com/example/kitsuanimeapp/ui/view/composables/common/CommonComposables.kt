@@ -2,31 +2,24 @@ package com.example.kitsuanimeapp.ui.view.composables.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @Composable
 fun TitleText(text: String) {
     Text(
         text = text,
-        fontSize = 24.sp,
-        fontWeight = FontWeight.SemiBold,
-        fontStyle = FontStyle.Italic,
-        modifier = Modifier.padding(top = 8.dp, bottom = 1.dp),
+        style = MaterialTheme.typography.titleLarge,
     )
 }
 
@@ -34,10 +27,7 @@ fun TitleText(text: String) {
 fun SubTitleText(text: String) {
     Text(
         text = text,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Medium,
-        fontStyle = FontStyle.Italic,
-        modifier = Modifier.padding(bottom = 16.dp, top = 1.dp),
+        style = MaterialTheme.typography.titleMedium,
     )
 }
 
@@ -45,12 +35,7 @@ fun SubTitleText(text: String) {
 fun BodyText(text: String, onSelected: () -> Unit) {
     Text(
         text = text,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Medium,
-        maxLines = 6,
-        modifier = Modifier.clickable { onSelected() },
-        softWrap = true,
-        overflow = TextOverflow.Ellipsis,
+        style = MaterialTheme.typography.bodyMedium,
     )
 }
 

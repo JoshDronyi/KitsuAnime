@@ -8,6 +8,7 @@ import com.example.kitsuanimeapp.data.model.remote.ResponseState
 import com.example.kitsuanimeapp.ui.view.composables.category.CategoryState
 import com.example.kitsuanimeapp.util.ErrorTypes
 import com.example.kitsuanimeapp.util.StatusCodes
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,27 +23,31 @@ class CategoryViewModel(
     private val _categoryState: MutableStateFlow<CategoryState> = MutableStateFlow(CategoryState())
     val categoryState: StateFlow<CategoryState> get() = _categoryState
 
-    fun getAnimeCategories() = viewModelScope.launch(Dispatchers.IO) {
-        _categoryState.update {
-            it.copy(isLoading = true)
-        }
-        try {
-            val categories = repo.getCategories()
+    fun getAnimeCategories(dispatcher: CoroutineDispatcher = Dispatchers.IO) =
+        viewModelScope.launch(dispatcher) {
             _categoryState.update {
-                it.copy(isLoading = false, categoryList = categories)
+                it.copy(isLoading = true)
             }
-        } catch (thrown: Throwable) {
-            Log.e(TAG, "getAnimeCategories: the error was ${thrown.localizedMessage}")
-            _categoryState.update {
-                it.copy(
-                    isLoading = false,
-                    error = ResponseState.ErrorResponse(
-                        ErrorTypes.UNKNOWN,
-                        StatusCodes.SC_400,
-                        thrown,
-                    ),
-                )
+            try {
+                val categories = repo.getCategories()
+                _categoryState.update {
+                    it.copy(categoryList = categories)
+                }
+            } catch (thrown: Throwable) {
+                Log.e(TAG, "getAnimeCategories: the error was ${thrown.localizedMessage}")
+                _categoryState.update {
+                    it.copy(
+                        error = ResponseState.ErrorResponse(
+                            ErrorTypes.UNKNOWN,
+                            StatusCodes.SC_400,
+                            thrown,
+                        ),
+                    )
+                }
+            } finally {
+                _categoryState.update {
+                    it.copy(isLoading = false)
+                }
             }
         }
-    }
 }

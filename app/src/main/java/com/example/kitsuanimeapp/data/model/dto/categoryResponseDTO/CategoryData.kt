@@ -4,9 +4,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CategoryData(
-    val attributes: Attributes,
-    val id: String,
-    val links: Links,
-    val relationships: Relationships,
-    val type: String
-)
+    val attributes: Attributes? = null,
+    val id: String? = null,
+    val links: Links? = null,
+    val relationships: Relationships? = null,
+    val type: String,
+) {
+    companion object {
+        fun createBlankObject(): CategoryData {
+            return CategoryData(type = "Toaster Strudel")
+        }
+    }
+}

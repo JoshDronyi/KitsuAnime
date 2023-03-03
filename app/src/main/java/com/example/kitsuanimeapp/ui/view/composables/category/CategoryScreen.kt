@@ -40,8 +40,10 @@ fun CategoryScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         items(categories) {
-            CategoryItem(categoryAttributes = it.attributes) {
-                onItemSelected(it)
+            it.attributes?.let { attr ->
+                CategoryItem(categoryAttributes = attr) {
+                    onItemSelected(it)
+                }
             }
         }
     }

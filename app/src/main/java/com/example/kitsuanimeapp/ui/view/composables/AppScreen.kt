@@ -63,7 +63,7 @@ fun AppScreenContent(
         composable(Screens.CATEGORY.route) {
             CategoryScreen(categories = state.categoryList) {
                 animeListViewModel.getSelectedCategoryList(
-                    it.relationships.anime.links.related ?: DEFAULT_ANIME_STRING,
+                    it.relationships?.anime?.links?.related ?: DEFAULT_ANIME_STRING,
                 )
                 controller.navigate(Screens.LIST.route)
             }

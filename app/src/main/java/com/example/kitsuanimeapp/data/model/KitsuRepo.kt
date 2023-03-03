@@ -5,7 +5,7 @@ import com.example.kitsuanimeapp.data.model.remote.KitsuService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class KitsuRepo private constructor(
+open class KitsuRepo private constructor(
     private val service: KitsuService,
 ) {
     private val TAG = "KitsuRepo"

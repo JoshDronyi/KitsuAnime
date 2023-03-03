@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.kitsuanimeapp.data.model.KitsuRepo
 
 class KitsuViewModelFactory(
-    private val repo: KitsuRepo
+    private val repo: KitsuRepo,
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
@@ -16,5 +16,4 @@ class KitsuViewModelFactory(
             }
         }
     }
-
 }

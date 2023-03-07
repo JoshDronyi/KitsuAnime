@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CategoryResponse(
     @SerialName("data")
-    val categoryData: List<CategoryData>,
+    val categoryData: List<CategoryDataDTO>,
     val links: CategoryResponseLinks,
     val meta: Meta
 )

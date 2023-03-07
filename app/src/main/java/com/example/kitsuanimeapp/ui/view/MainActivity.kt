@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kitsuanimeapp.data.model.KitsuRepo
+import com.example.kitsuanimeapp.data.model.local.KitsuDB
 import com.example.kitsuanimeapp.data.model.remote.RetrofitObject
 import com.example.kitsuanimeapp.ui.theme.KitsuAnimeAppTheme
 import com.example.kitsuanimeapp.ui.view.composables.AppScreenContent
@@ -36,7 +37,11 @@ import com.example.kitsuanimeapp.ui.viewmodels.KitsuViewModelFactory
 class MainActivity : ComponentActivity() {
 
     private val repo by lazy {
-        KitsuRepo.getInstance(RetrofitObject.getKitsuService())
+        val db = KitsuDB.getInstance(this)
+        KitsuRepo.getInstance(
+            RetrofitObject.getKitsuService(),
+            db.getKitsuDao(),
+        )
     }
     private val catViewModel by viewModels<CategoryViewModel> {
         KitsuViewModelFactory(repo)

@@ -1,6 +1,6 @@
 package com.example.kitsuanimeapp.ui.view.composables.category
 
-import com.example.kitsuanimeapp.data.model.dto.categoryResponseDTO.CategoryData
+import com.example.kitsuanimeapp.data.model.local.entities.CategoryData
 import com.example.kitsuanimeapp.data.model.remote.ResponseState
 
 data class CategoryState(

@@ -1,8 +1,5 @@
-package com.example.kitsuanimeapp.data.model.dto.categoryResponseDTO
+package com.example.kitsuanimeapp.data.model.local.entities
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Attributes(
     val childCount: Int,
     val createdAt: String,
@@ -11,5 +8,5 @@ data class Attributes(
     val slug: String,
     val title: String,
     val totalMediaCount: Int,
-    val updatedAt: String
+    val updatedAt: String,
 )

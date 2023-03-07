@@ -20,8 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.kitsuanimeapp.data.model.dto.categoryResponseDTO.Attributes
-import com.example.kitsuanimeapp.data.model.dto.categoryResponseDTO.CategoryData
+import com.example.kitsuanimeapp.data.model.local.entities.Attributes
+import com.example.kitsuanimeapp.data.model.local.entities.CategoryData
 import com.example.kitsuanimeapp.ui.view.composables.common.BodyText
 import com.example.kitsuanimeapp.ui.view.composables.common.MediaCount
 import com.example.kitsuanimeapp.ui.view.composables.common.NSFWTag
@@ -55,8 +55,7 @@ fun CategoryItem(categoryAttributes: Attributes, onItemSelected: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth(PAGE_PERCENTAGE)
-            .padding(16.dp)
-            .background(MaterialTheme.colorScheme.surface),
+            .padding(16.dp),
         onClick = onItemSelected,
         elevation = CardDefaults.cardElevation(
             defaultElevation = 16.dp,
@@ -64,6 +63,9 @@ fun CategoryItem(categoryAttributes: Attributes, onItemSelected: () -> Unit) {
             pressedElevation = 8.dp,
         ),
         border = BorderStroke(1.dp, Color.Black),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer
+        ),
     ) {
         Column(
             verticalArrangement = Arrangement.Center,

@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -20,6 +22,10 @@ fun TitleText(text: String) {
     Text(
         text = text,
         style = MaterialTheme.typography.titleLarge,
+        overflow = TextOverflow.Visible,
+        maxLines = 3,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(8.dp),
     )
 }
 
@@ -36,6 +42,8 @@ fun BodyText(text: String, onSelected: () -> Unit) {
     Text(
         text = text,
         style = MaterialTheme.typography.bodyMedium,
+        maxLines = 8,
+        overflow = TextOverflow.Ellipsis,
     )
 }
 

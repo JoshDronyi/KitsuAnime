@@ -1,7 +1,7 @@
 package com.example.kitsuanimeapp.ui.viewmodels
 
 import com.example.kitsuanimeapp.data.model.KitsuRepo
-import com.example.kitsuanimeapp.data.model.dto.categoryResponseDTO.CategoryData
+import com.example.kitsuanimeapp.data.model.dto.categoryResponseDTO.CategoryDataDTO
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -35,7 +35,7 @@ class CategoryViewModelTest {
     @Test
     fun checkStateUpdates_SuccessfulUpdate_ReturnsTrue() = runTest(dispatcher.scheduler) {
         // Given
-        val testObject = CategoryData.createBlankObject()
+        val testObject = CategoryDataDTO.createBlankObject()
         coEvery { repo.getCategories() } coAnswers { listOf(testObject) }
         val viewModel = CategoryViewModel(repo)
         // When

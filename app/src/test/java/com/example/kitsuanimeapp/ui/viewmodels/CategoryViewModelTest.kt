@@ -36,7 +36,7 @@ class CategoryViewModelTest {
     fun checkStateUpdates_SuccessfulUpdate_ReturnsTrue() = runTest(dispatcher.scheduler) {
         // Given
         val testObject = CategoryDataDTO.createBlankObject()
-        coEvery { repo.getCategories() } coAnswers { listOf(testObject) }
+        coEvery { repo.getNetworkCategories() } coAnswers { listOf(testObject) }
         val viewModel = CategoryViewModel(repo)
         // When
         viewModel.getAnimeCategories(dispatcher).join()

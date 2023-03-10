@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AnimeResponseData(
-    val attributes: AnimeListAttributes,
+    val attributes: AnimeListAttributesDTO,
     val id: String,
     val links: Links,
     val relationships: AnimeListRelationships,

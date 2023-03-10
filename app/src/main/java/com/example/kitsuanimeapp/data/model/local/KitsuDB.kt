@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.kitsuanimeapp.data.model.local.dao.KitsuDao
+import com.example.kitsuanimeapp.data.model.local.entities.AnimeItemAttributes
 import com.example.kitsuanimeapp.data.model.local.entities.CategoryData
-import com.example.kitsuanimeapp.data.model.local.entities.KitsuDao
 
 @Database(
-    entities = [CategoryData::class],
+    entities = [CategoryData::class, AnimeItemAttributes::class],
     version = 1,
     exportSchema = true,
 )

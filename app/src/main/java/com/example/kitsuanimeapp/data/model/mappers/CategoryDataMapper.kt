@@ -1,6 +1,8 @@
 package com.example.kitsuanimeapp.data.model.mappers
 
+import com.example.kitsuanimeapp.data.model.dto.anime_list_response_dto.AnimeListAttributesDTO
 import com.example.kitsuanimeapp.data.model.dto.categoryResponseDTO.CategoryDataDTO
+import com.example.kitsuanimeapp.data.model.local.entities.AnimeItemAttributes
 import com.example.kitsuanimeapp.data.model.local.entities.Attributes
 import com.example.kitsuanimeapp.data.model.local.entities.CategoryData
 
@@ -28,3 +30,4 @@ class CategoryDataMapper : Mapper<CategoryDataDTO, CategoryData> {
         }
     }
 }
+

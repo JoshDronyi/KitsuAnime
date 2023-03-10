@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">KitsuAnimeApp</string>
+    <string name="categoryScreen">Anime Categories</string>
+    <string name="listScreen">Anime List</string>
+    <string name="detailsScreen">Details</string>
 </resources>

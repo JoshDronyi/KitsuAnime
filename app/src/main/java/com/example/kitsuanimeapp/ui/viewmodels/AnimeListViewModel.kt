@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.kitsuanimeapp.data.model.KitsuRepo
 import com.example.kitsuanimeapp.data.model.dto.anime_list_response_dto.AnimeResponseData
 import com.example.kitsuanimeapp.ui.view.composables.animelist.AnimeListState
+import com.example.kitsuanimeapp.util.ErrorTypes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,6 +29,19 @@ class AnimeListViewModel(private val repo: KitsuRepo) : ViewModel() {
     fun setCurrentAnime(selectedData: AnimeResponseData) {
         _animeList.update {
             it.copy(currentListItem = selectedData)
+        }
+    }
+
+    fun saveCurrentAnime(data: AnimeResponseData) {
+        _animeList.update {
+            it.copy(isLoading = true, currentListItem = data)
+        }
+        try {
+            repo.saveFavoriteAnime(data)
+        } catch (thrown: Throwable) {
+            _animeList.update {
+                it.copy(isLoading = false, error = ErrorTypes.UNKNOWN)
+            }
         }
     }
 }

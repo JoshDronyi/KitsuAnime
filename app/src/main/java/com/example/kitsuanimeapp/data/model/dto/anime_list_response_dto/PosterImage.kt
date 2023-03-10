@@ -5,5 +5,4 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PosterImage(
     val large: String,
-    val meta: MetaX
 )

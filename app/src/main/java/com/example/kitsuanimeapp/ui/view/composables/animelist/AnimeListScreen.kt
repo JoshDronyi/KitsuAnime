@@ -3,6 +3,7 @@
 package com.example.kitsuanimeapp.ui.view.composables.animelist
 
 import android.util.Log
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,7 +18,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -36,7 +40,7 @@ import com.example.kitsuanimeapp.data.model.dto.anime_list_response_dto.AnimeRes
 import com.example.kitsuanimeapp.ui.view.composables.common.BodyText
 import com.example.kitsuanimeapp.ui.view.composables.common.TitleText
 
-private val TAG = "AnimeListScreen"
+private const val TAG = "AnimeListScreen"
 
 @Composable
 fun AnimeListScreen(
@@ -67,10 +71,16 @@ fun AnimeListItem(
 ) {
     val title = animeData.attributes.canonicalTitle
     var showAlert by remember { mutableStateOf(false) }
+    var isEnabled by remember { mutableStateOf(true) }
 
     Card(
-        modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+        ),
+        border = BorderStroke(1.dp, Color.Black),
     ) {
         Column(
             horizontalAlignment = Alignment.End,
@@ -84,7 +94,8 @@ fun AnimeListItem(
                 AsyncImage(
                     model = animeData.attributes.posterImage.large,
                     contentDescription = "This is an image from $title",
-                    modifier = Modifier.widthIn(min = 100.dp, max = 150.dp)
+                    modifier = Modifier
+                        .widthIn(min = 100.dp, max = 150.dp)
                         .heightIn(min = 150.dp, max = 200.dp),
                 )
                 Column(
@@ -113,7 +124,8 @@ fun AnimeListItem(
                     ) {
                         Text(
                             text = animeData.attributes.synopsis,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier
+                                .fillMaxWidth()
                                 .padding(16.dp),
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Medium,
@@ -124,10 +136,14 @@ fun AnimeListItem(
                 }
             }
 
-            Button(onClick = {
-                Log.e(TAG, "AnimeListItem: clicked the read me button")
-                onAnimeSelected()
-            }) {
+            Button(
+                onClick = {
+                    Log.e(TAG, "AnimeListItem: clicked the read me button")
+                    onAnimeSelected()
+                    isEnabled = !isEnabled
+                },
+                enabled = isEnabled,
+            ) {
                 Text(text = "Read more ->")
             }
         }

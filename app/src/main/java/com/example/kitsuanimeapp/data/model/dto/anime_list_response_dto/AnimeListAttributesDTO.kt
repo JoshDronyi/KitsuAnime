@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AnimeListAttributes(
+data class AnimeListAttributesDTO(
     @SerialName("ageRating")
     val ageRating: String,
     val ageRatingGuide: String,

@@ -64,7 +64,7 @@ fun CategoryItem(categoryAttributes: Attributes, onItemSelected: () -> Unit) {
         ),
         border = BorderStroke(1.dp, Color.Black),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.tertiaryContainer
+            containerColor = MaterialTheme.colorScheme.surface,
         ),
     ) {
         Column(

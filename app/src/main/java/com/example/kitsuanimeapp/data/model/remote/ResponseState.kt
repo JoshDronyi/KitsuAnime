@@ -1,15 +1,20 @@
 package com.example.kitsuanimeapp.data.model.remote
 
-import com.example.kitsuanimeapp.data.model.dto.categoryResponseDTO.CategoryDataDTO
+import com.example.kitsuanimeapp.data.model.local.entities.CategoryData
 import com.example.kitsuanimeapp.util.ErrorTypes
 import com.example.kitsuanimeapp.util.StatusCodes
 
 sealed class ResponseState {
 
     sealed class Success : ResponseState() {
-        data class CategorySuccess(
-            val categories: List<CategoryDataDTO>,
-        ) : Success()
+        open class CategorySuccess(val list: List<CategoryData>) : Success()
+        data class NetworkCategorySuccess(
+            val categories: List<CategoryData>,
+        ) : CategorySuccess(categories)
+
+        data class LocalCategories(
+            val categories: List<CategoryData>,
+        ) : CategorySuccess(categories)
     }
 
     data class ErrorResponse(
